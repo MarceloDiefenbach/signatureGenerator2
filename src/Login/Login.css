@@ -1,0 +1,19 @@
+.container-login{
+    width: 300px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.still_dont_have_account{
+    padding-top: 24px;
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.final-input-account{
+    margin-bottom: 24px;
+}

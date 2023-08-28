@@ -1,0 +1,27 @@
+.styled-input {
+  background: rgb(255, 255, 255);
+  border: 1px solid #000000;;
+  border-radius: 8px;
+  color: black;
+  font-size: 16px;
+  width: 89%;
+  padding: 16px;
+}
+  
+.styled-input::placeholder {
+  color: #646464;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.label {
+  align-self: flex-start;
+  padding-bottom: 4px;
+  color: rgb(0, 0, 0);
+  font-size: 12px; /* Tamanho da fonte desejado para as labels */
+}
