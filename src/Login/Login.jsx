@@ -28,6 +28,7 @@ function Login() {
       console.log(response)
       if (response.statusCode === "200") {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('email', email);
         navigate('/dashboard');
       } else {
         console.log('Erro ao fazer login: Resposta vazia do servidor.');

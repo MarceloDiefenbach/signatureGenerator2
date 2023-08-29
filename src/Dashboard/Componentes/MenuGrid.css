@@ -1,6 +1,6 @@
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   width: 100%;
 }
@@ -13,10 +13,10 @@
 
 .menu-item {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   border: 1px solid #cccccc;
   border-radius: 8px;
-  padding: 8px;
+  padding: 16px;
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
@@ -26,19 +26,20 @@
 }
 
 .menu-item:hover {
-  border-color: rgba(0, 0, 255, 0.5); /* Cor da borda quando hover */
-  box-shadow: 0 0 8px rgba(0, 0, 255, 0.3); /* Sombra azul clara quando hover */
+  background: #428bf92b;
+  border-color: #428BF9; /* Cor da borda quando hover */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra azul clara quando hover */
 }
 
 .menu-item-label{
-  font-weight: 500;
+  font-weight: 700;
   color: black;
   padding-left: 16px;
   padding-right: 16px;
   padding-top: 8px;
   padding-bottom: 8px;
   margin: 0px;
-  text-align: center;
+  text-align: left;
 }
 
 .icon {

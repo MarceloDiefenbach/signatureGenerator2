@@ -1,0 +1,61 @@
+.grid-container-files {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.menu-item-files {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  padding: 8px;
+  box-sizing: border-box;
+  cursor: pointer;
+  align-items: center;
+  background: rgb(255, 255, 255);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.menu-item-files:hover {
+  background: #428bf92b;
+  border-color: #428BF9; /* Cor da borda quando hover */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra azul clara quando hover */
+}
+
+.menu-item-label-files{
+  font-weight: 500;
+  color: black;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin: 0px;
+  text-align: center;
+}
+
+.image-files {
+  display: block; /* Para que as margens automáticas funcionem */
+  --debug: 200px;
+  width: calc(var(--debug) / 1 - 20px);
+  height: calc(var(--debug) / 1 - s0px);
+  object-fit: fill;
+  border-radius: 6px;
+}
+
+
+@media (max-width: 1000px) {
+  .grid-container-files {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .image-files {
+    --debug: calc(100vw / 3 - 15px);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-container-files {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .image-files {
+    --debug: calc(100vw / 2 - 23px);
+  }
+}

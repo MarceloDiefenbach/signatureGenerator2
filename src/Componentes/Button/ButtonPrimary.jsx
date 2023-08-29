@@ -1,5 +1,6 @@
 import React from 'react';
-import './ButtonPrimary.css'; // Importando o novo componente
+import './ButtonPrimary.css';
+import '../TextStyles.css'
 
 function Button({ label, onClick }) {
     return (

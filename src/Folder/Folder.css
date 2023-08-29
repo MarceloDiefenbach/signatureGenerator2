@@ -11,6 +11,23 @@
 
 .folder-title{
     color: black;
+    margin: 0px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-weight: 400;
+    padding-left: 16px;
+}
+
+.folder-title:hover{
+    cursor: pointer;
+}
+
+.folder-actual-name{
+    color: black;
+    margin: 0px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    font-weight: 400;
 }
 
 .folder-overlay{
@@ -19,20 +36,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.1); /* Cor preta com opacidade */
+    background-color: rgba(0, 0, 0, 0.268); /* Cor preta com opacidade */
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.folder-container{
-    height: calc(100vh - 130px);
-    background: rgb(231, 231, 231);
-    overflow-y: auto;
-    padding: 16px;
-    border-radius: 16px;
-    margin-bottom: 16px;
-    scrollbar-width: auto;
 }
 
 .folder-container::-webkit-scrollbar {
@@ -46,5 +53,18 @@
 
 .folder-container::-webkit-scrollbar-track {
     background-color: #eeeeee;
-    border-radius: 8px; 
+    border-radius: 8px;
+}
+
+.vertical-breadcrumbs{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.arrow-icon-breadcrumb{
+    height: 16px;
+    opacity: 1;
+    padding-left: 16px;
+    padding-right: 16px;
 }

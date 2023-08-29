@@ -3,55 +3,51 @@ import './Dashboard.css';
 import '../Componentes/TextStyles.css';
 import { useNavigate } from 'react-router-dom';
 import MenuGrid from './Componentes/MenuGrid';
+import LoadingView from '../Componentes/Loading/Loading'
+import axios from 'axios';
 
-const API_BASE_URL = 'http://gpt-treinador.herokuapp.com/'; // Altere para a URL correta do seu servidor
+const API_BASE_URL = 'http://gpt-treinador.herokuapp.com/';
 
 function Login() {
   const navigate = useNavigate();
 
-  const [isLoading, setIsLoading] = useState(true); // Estado para controlar o carregamento
+  const [isLoading, setIsLoading] = useState(true);
   const [folders, setFolders] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/v1/folders`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ ownerID: '1' })
+    axios.post(`${API_BASE_URL}/v1/folders`, { ownerID: '1' }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
     })
-      .then(response => response.json())
-      .then(data => {
-        setFolders(data.folders);
-        setIsLoading(false); // Marcar o carregamento como concluído
-      })
-      .catch(error => {
+    .then(response => {
+        setFolders(response.data.folders);
+        setIsLoading(false);
+    })
+    .catch(error => {
         console.error('Erro ao obter pastas:', error);
-        setIsLoading(false); // Marcar o carregamento como concluído mesmo em caso de erro
-      });
-  }, []);
+        setIsLoading(false);
+    });
+}, []);
 
   const handleItemClick = (index) => {
-    console.log(`Clicked folder ${folders[index].folderID}`); // O erro está aqui
-    const folderid = `${folders[index].folderID}`; // Deveria ser folderID em vez de folderid
+    const folderid = `${folders[index].folderID}`;
     navigate(`/folder/${folderid}`);
   };
 
   return (
-    <div className='dashboard-container'>
-      {isLoading && ( // Renderização condicional com base no estado isLoading
-        <div className='dashboard-overlay'>
-          <h4>
-            Carregando
-          </h4>
+    <div>
+      <div className='dashboard-container'>
+        <h3 className='dashboard-title'>
+          Pastas
+        </h3>
+        <div className='container-folders-view'>
+          <MenuGrid items={folders} onItemClick={handleItemClick} />
         </div>
-      )}
-      <h1 className='dashboard-title'>
-        Suas pastas
-      </h1>
-      <div className='container-folders-view'>
-        <MenuGrid items={folders} onItemClick={handleItemClick} />
       </div>
+      {isLoading && (
+          <LoadingView />
+        )}
     </div>
   );
 }
