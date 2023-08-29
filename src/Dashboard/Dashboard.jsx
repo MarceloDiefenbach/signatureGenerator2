@@ -13,22 +13,40 @@ function Login() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [folders, setFolders] = useState([]);
-
+  
   useEffect(() => {
-    axios.post(`${API_BASE_URL}/v1/folders`, { ownerID: '1' }, {
-        headers: {
-            'Content-Type': 'application/json'
+
+    const tokenData = {
+      email: localStorage.getItem('email'), // Substitua pelo email do usuário
+      token: localStorage.getItem('token') // Substitua pelo token do usuário
+    };
+
+    axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
+      .then(tokenResponse => {
+        if (tokenResponse.status === 200) {
+          axios.post(`${API_BASE_URL}/v1/folders`, { ownerID: '1' }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
+          .then(response => {
+              setFolders(response.data.folders);
+              setIsLoading(false);
+          })
+          .catch(error => {
+              console.error('Erro ao obter pastas:', error);
+              setIsLoading(false);
+          });
+        } else {
+          console.log("vai pra login");
+          navigate('/');
         }
-    })
-    .then(response => {
-        setFolders(response.data.folders);
-        setIsLoading(false);
-    })
-    .catch(error => {
-        console.error('Erro ao obter pastas:', error);
-        setIsLoading(false);
-    });
-}, []);
+      })
+      .catch(tokenError => {
+        console.error('Erro ao verificar token:', tokenError);
+        navigate('/');
+      });
+  }, []);
 
   const handleItemClick = (index) => {
     const folderid = `${folders[index].folderID}`;

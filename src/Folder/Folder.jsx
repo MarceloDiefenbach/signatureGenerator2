@@ -18,40 +18,38 @@ function Folder() {
     const [isLoading, setIsLoading] = useState(true);
     const [folderName, setFolderName] = useState(true);
     const [files, setFiles] = useState([]);
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
 
     useEffect(() => {
-        console.log("entrou");
-      const tokenData = {
-        email: email, // Substitua pelo email do usuário
-        token: token // Substitua pelo token do usuário
-      };
-  
-      axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
-        .then(tokenResponse => {
-          if (tokenResponse.status === 200) {
-            axios.post(`${API_BASE_URL}/v1/files`, {
-              folderID: folderid
+        
+        const tokenData = {
+            email: localStorage.getItem('email'), // Substitua pelo email do usuário
+            token: localStorage.getItem('token') // Substitua pelo token do usuário
+        };
+
+        axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
+            .then(tokenResponse => {
+            if (tokenResponse.status === 200) {
+                axios.post(`${API_BASE_URL}/v1/files`, {
+                folderID: folderid
+                })
+                .then(response => {
+                    setFiles(response.data.files);
+                    setFolderName(response.data.folderName);
+                    setIsLoading(false);
+                })
+                .catch(error => {
+                    console.error('Erro ao obter arquivos:', error);
+                    setIsLoading(false);
+                });
+            } else {
+                console.log("vai pra login");
+                navigate('/');
+            }
             })
-            .then(response => {
-              setFiles(response.data.files);
-              setFolderName(response.data.folderName);
-              setIsLoading(false);
-            })
-            .catch(error => {
-              console.error('Erro ao obter arquivos:', error);
-              setIsLoading(false);
+            .catch(tokenError => {
+                console.error('Erro ao verificar token:', tokenError);
+                navigate('/');
             });
-          } else {
-            console.log("vai pra login");
-            navigate('/');
-          }
-        })
-        .catch(tokenError => {
-          console.error('Erro ao verificar token:', tokenError);
-          navigate('/');
-        });
     }, [folderid]);
 
     const handleItemClick = (index) => {
