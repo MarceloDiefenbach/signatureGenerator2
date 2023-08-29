@@ -2,9 +2,9 @@ import folder_path from '../../assets/Icons/folder.svg';
 import React from 'react';
 import './FilesGrid.css'; // Importa os estilos CSS
 
-const FileItem = ({ iconSrc, folderName, onClick }) => (
+const FileItem = ({ imageSrc, folderName, onClick }) => (
   <div className="menu-item-files" onClick={onClick}>
-    <img className="image-files" src="https://encartefacilapp.com.br/imagesSignature/card%201.png" alt="image" />
+    <img className="image-files" src={imageSrc} alt="image" />
     <h6 className='menu-item-label-files'>{folderName}</h6>
   </div>
 );
@@ -14,7 +14,7 @@ const FilesGrid = ({ items, onItemClick }) => (
     {items.map((item, index) => (
       <FileItem
         key={index}
-        iconSrc={folder_path}
+        imageSrc={item.fileLink}
         folderName={item.fileName}
         onClick={() => onItemClick(index)}
       />

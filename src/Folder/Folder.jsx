@@ -5,9 +5,10 @@ import './Folder.css';
 import '../Componentes/TextStyles.css';
 import { useNavigate } from 'react-router-dom';
 import FilesGrid from './Componentes/FilesGrid';
+import FileView from './FileView/FileView'
 import LoadingView from '../Componentes/Loading/Loading'
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; // Importe o Axios
+import axios from 'axios';
 
 const API_BASE_URL = 'http://gpt-treinador.herokuapp.com/';
 
@@ -16,14 +17,16 @@ function Folder() {
     const navigate = useNavigate();
     const { folderid } = useParams();
     const [isLoading, setIsLoading] = useState(true);
+    const [itemIsOpen, setItemIsOpen] = useState(false);
     const [folderName, setFolderName] = useState(true);
     const [files, setFiles] = useState([]);
+    const [selectedFile, setSelectedFile] = useState([]);
 
     useEffect(() => {
         
         const tokenData = {
-            email: localStorage.getItem('email'), // Substitua pelo email do usuário
-            token: localStorage.getItem('token') // Substitua pelo token do usuário
+            email: localStorage.getItem('email'),
+            token: localStorage.getItem('token')
         };
 
         axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
@@ -52,8 +55,10 @@ function Folder() {
             });
     }, [folderid]);
 
-    const handleItemClick = (index) => {
+    const openFile = (index) => {
         console.log(`Item ${index + 1} clicado.`);
+        setSelectedFile(files[index]);
+        setItemIsOpen(true);
     };
 
     const goToMyFolders = (index) => {
@@ -74,12 +79,14 @@ function Folder() {
                     </h3>
                 </div>
                 <div className='container-folders-view'>
-                    {/* Atualiza para usar o estado "files" */}
-                    <FilesGrid items={files} onItemClick={handleItemClick} />
+                    <FilesGrid items={files} onItemClick={openFile} />
                 </div>
             </div>
-            {isLoading && ( // Renderização condicional com base no estado isLoading
+            {isLoading && ( 
                 <LoadingView />
+            )}
+            {itemIsOpen && (
+                <FileView selectedItem={selectedFile}/>
             )}
         </div>
     );
