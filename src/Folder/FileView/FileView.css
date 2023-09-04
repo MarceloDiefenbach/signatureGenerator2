@@ -1,5 +1,46 @@
 .file-view-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding-top: 32px
+}
+
+.file_shadow{
+    width: 500px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.image-container{
+    width: 500px;
+    background: rgba(255, 255, 255);
+}
+
+.file-contact-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-    height: 100vh;
-    background: red;
+    background: white;
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 6px;
+}
+
+.file-signaturaName{
+    color: black;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin: 0px;
+}
+.file-signaturaPhone{
+    color: black;
+    font-size: 12px;
+    padding-right: 10px;
+    margin: 0px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }

@@ -11,6 +11,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .menu-item {
   display: flex;
   justify-content: flex-start;

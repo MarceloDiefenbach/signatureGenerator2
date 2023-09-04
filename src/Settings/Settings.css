@@ -1,0 +1,67 @@
+.settings-main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.circulo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #3498db;
+    margin-top: 16vh;
+    margin-bottom: 24px;
+}
+
+.settings_client_input_label{
+    width: 280px;
+    align-items: first baseline;
+    font-size: 12px;
+    font-weight: 400;
+    margin: 0px;
+    padding-top: 8px;
+    padding-bottom: 0px;
+}
+
+.settings_client_email{
+    width: 280px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0px;
+    padding-bottom: 40px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+}
+
+.settings_list_items{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 128px;
+}
+
+.row_item_settings{
+    width: 300px;
+    background: rgb(233, 233, 233);
+    border-radius: 8px;
+}
+
+.row_item_settings_label{
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.back_to_dashboard_button_setting{
+    width: 100%;
+    padding-top: 24px;
+}
+
+.back_to_dashboard_button_setting:hover{
+    cursor: pointer;
+}

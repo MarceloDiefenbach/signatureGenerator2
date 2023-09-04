@@ -51,7 +51,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <ButtonPrimary label="Criar conta" onClick={handleLogin} />
+      <ButtonPrimary label="Criar conta" onClick={handleLogin} isFullWidth={true}/>
       <h5 className='still_dont_have_account' onClick={goToLogin}>
         Já tenho uma conta! Fazer login.
       </h5>

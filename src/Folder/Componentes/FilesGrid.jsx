@@ -4,7 +4,7 @@ import './FilesGrid.css'; // Importa os estilos CSS
 
 const FileItem = ({ imageSrc, folderName, onClick }) => (
   <div className="menu-item-files" onClick={onClick}>
-    <img className="image-files" src={imageSrc} alt="image" />
+    <img className="image-files" src={`data:image/png;base64,${imageSrc}`} alt="image" />
     <h6 className='menu-item-label-files'>{folderName}</h6>
   </div>
 );

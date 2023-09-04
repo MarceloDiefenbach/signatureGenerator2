@@ -19,8 +19,8 @@
 
 .menu-item-files:hover {
   background: #428bf92b;
-  border-color: #428BF9; /* Cor da borda quando hover */
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Sombra azul clara quando hover */
+  border-color: #428BF9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .menu-item-label-files{
@@ -47,7 +47,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
   .image-files {
-    --debug: calc(100vw / 3 - 15px);
+    --debug: calc(100vw / 3 - 30px);
   }
 }
 
@@ -56,6 +56,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
   .image-files {
-    --debug: calc(100vw / 2 - 23px);
+    --debug: calc(100vw / 2 - 30px);
   }
 }

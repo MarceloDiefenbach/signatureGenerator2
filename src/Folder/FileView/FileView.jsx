@@ -1,41 +1,50 @@
-import React, { useState, useRef } from 'react';
-import html2canvas from 'html2canvas'; // Importe a biblioteca
+import React, { useRef } from 'react';
+import html2canvas from 'html2canvas'; // Import the library
 import './FileView.css';
+import ButtonPrimary from '../../Componentes/Button/ButtonPrimary'
 
 const FileView = ({ selectedItem }) => {
   const imageContainerRef = useRef(null);
-  const [downloadUrl, setDownloadUrl] = useState('');
 
-  const printDiv = async () => {
-    if (imageContainerRef.current) {
-      try {
-        const canvas = await html2canvas(imageContainerRef.current); // Captura a div como um canvas
+  const captureScreenshot = () => {
+    const divElement = imageContainerRef.current;
 
-        // Converte o canvas para uma URL de imagem
-        const imgData = canvas.toDataURL('image/png');
-
-        // Cria um link temporário para fazer o download da imagem
-        const link = document.createElement('a');
-        link.href = imgData;
-        link.download = 'screenshot.png';
-        link.click();
-      } catch (error) {
-        console.error('Erro ao capturar div:', error);
-      }
+    if (divElement) {
+      html2canvas(divElement).then(canvas => {
+        const screenshotUrl = canvas.toDataURL('image/png');
+        downloadScreenshot(screenshotUrl);
+      });
     }
+  };
+
+  const downloadScreenshot = (url) => {
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = 'screenshot.png';
+    anchor.click();
   };
 
   return (
     <div className='file-view-container'>
-      <div className='image-container' ref={imageContainerRef}>
-        <img src={selectedItem.fileLink} alt={selectedItem.fileName} onLoad={() => setDownloadUrl(selectedItem.fileLink)} />
-        <h4>{selectedItem.fileName}</h4>
+      <div className='file_shadow'>
+        <div className='image-container' ref={imageContainerRef}>
+          <img
+            src={`data:image/png;base64,${selectedItem.fileLink}`}
+            alt={selectedItem.fileName}
+            style={{ width: '100%' }} // Ajusta a largura da imagem para 100% do contêiner
+          />
+          <div className='file-contact-div'>
+            <h5 className='file-signaturaName'>{"Suzy Menegat"}</h5>
+            <h5 className='file-signaturaPhone'>{"(51) 9 9999-9999"}</h5>
+          </div>
+        </div>
       </div>
-      <button onClick={printDiv}>
-        Download Screenshot
-      </button>
+      <div>
+        <ButtonPrimary label="Baixar imagem" onClick={captureScreenshot} isFullWidth={false}/>
+      </div>
     </div>
   );
+  
 }
 
 export default FileView;

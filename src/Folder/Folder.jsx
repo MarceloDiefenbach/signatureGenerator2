@@ -10,7 +10,7 @@ import LoadingView from '../Componentes/Loading/Loading'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://gpt-treinador.herokuapp.com/';
+const API_BASE_URL = 'http://gpt-treinador.herokuapp.com/'; // Altere para a URL correta do seu servidor
 
 function Folder() {
 
@@ -32,7 +32,7 @@ function Folder() {
         axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
             .then(tokenResponse => {
             if (tokenResponse.status === 200) {
-                axios.post(`${API_BASE_URL}/v1/files`, {
+                axios.post(`${API_BASE_URL}/v2/files`, {
                 folderID: folderid
                 })
                 .then(response => {
@@ -66,27 +66,32 @@ function Folder() {
         navigate("/dashboard");
     };
 
+    const backToFolder = (index) => {
+        setItemIsOpen(false);
+    };
+
     return (
-        <div className='folder-all-bkacground'>
+        <div>
             <div className='folder-container'>
                 <div className='vertical-breadcrumbs'>
-                    <h3 className='folder-title' onClick={goToMyFolders}>
-                        Pastas
-                    </h3>
+                    <h5 className='folder-title' onClick={goToMyFolders}>
+                        Minhas pastas
+                    </h5>
                     <img className="arrow-icon-breadcrumb" src={arrow_right} alt="arrow right" />
-                    <h3 className='folder-actual-name'>
+                    <h5 className='folder-actual-name' onClick={backToFolder}>
                         {folderName}
-                    </h3>
-                </div>
+                    </h5>                </div>
                 <div className='container-folders-view'>
-                    <FilesGrid items={files} onItemClick={openFile} />
+                    {itemIsOpen && (
+                        <FileView selectedItem={selectedFile}/>
+                    )}
+                    {!itemIsOpen && (
+                        <FilesGrid items={files} onItemClick={openFile} />
+                    )}
                 </div>
             </div>
             {isLoading && ( 
                 <LoadingView />
-            )}
-            {itemIsOpen && (
-                <FileView selectedItem={selectedFile}/>
             )}
         </div>
     );

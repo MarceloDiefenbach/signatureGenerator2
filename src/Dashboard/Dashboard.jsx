@@ -1,3 +1,5 @@
+import gear_thin from '../assets/Icons/gearshape.svg';
+
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import '../Componentes/TextStyles.css';
@@ -53,13 +55,20 @@ function Login() {
     navigate(`/folder/${folderid}`);
   };
 
+  const goToSettings = (index) => {
+    navigate(`/settings`);
+  };
+
   return (
     <div>
       <div className='dashboard-container'>
-        <h3 className='dashboard-title'>
-          Pastas
-        </h3>
-        <div className='container-folders-view'>
+        <div className='dashboard-vertical-breadcrumbs'>
+            <h5 className='dashboard-title'>
+                Minhas pastas
+            </h5>
+            <img className="gear_thin_icon" src={gear_thin} alt="gear_thin" onClick={goToSettings}/>
+        </div>
+        <div className='container-dashboard-view'>
           <MenuGrid items={folders} onItemClick={handleItemClick} />
         </div>
       </div>
