@@ -3,16 +3,20 @@
     flex-direction: column;
     justify-content: center;
     gap: 40px;
-    padding-top: 32px
+    padding-top: 24px
+}
+
+.file_vie_image{
+    width: 100%;
 }
 
 .file_shadow{
-    width: 500px;
+    width: 600px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
 .image-container{
-    width: 500px;
+    width: 100%;
     background: rgba(255, 255, 255);
 }
 
@@ -25,12 +29,13 @@
     background: white;
     margin: 0px;
     padding: 0px;
-    padding-bottom: 6px;
+    padding-bottom: 8px;
+    padding-top: 3px;
 }
 
 .file-signaturaName{
     color: black;
-    font-size: 12px;
+    font-size: 16px;
     padding-left: 10px;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -38,7 +43,7 @@
 }
 .file-signaturaPhone{
     color: black;
-    font-size: 12px;
+    font-size: 16px;
     padding-right: 10px;
     margin: 0px;
     padding-top: 4px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './InputField.css'; // Importando o novo componente
+import './InputField.css';
 
 function InputField({ id, labelText, type, placeholder, value, onChange }) {
   return (
@@ -13,7 +13,7 @@ function InputField({ id, labelText, type, placeholder, value, onChange }) {
         value={value}
         onChange={onChange}
       />
-    </div>
+      </div>
   );
 }
 

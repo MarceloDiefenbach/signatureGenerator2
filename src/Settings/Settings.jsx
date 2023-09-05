@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Settings.css';
 import ButtonPrimary from '../Componentes/Button/ButtonPrimary';
 import  '../Componentes/TextStyles.css';
 import { useNavigate } from 'react-router-dom';
+import InputField from '../Componentes/InputField/InputField';
 
 function Settings() {
 
@@ -11,11 +12,6 @@ function Settings() {
     const [editedName, setEditedName] = useState(localStorage.getItem('name'))
 
     const navigate = useNavigate();
-
-    const handleLogin = async () => {
-        console.log("oi");
-        navigate('/dashboard')
-    };
 
     function backToDashboard() {
         navigate('/dashboard');
@@ -30,37 +26,39 @@ function Settings() {
 
     return (
         <div className="settings-main-container">
-            <div className="circulo"></div>
-            <div className='settings_list_items'>
-                <h5 className='settings_client_input_label'>Nome</h5>
-                <input
-                    type="text"
-                    value={editedName}
-                    onChange={(e) => setEditedName(e.target.value)}
-                    className='settings_client_email'
-                    placeholder="Digite seu nome"
-                />
-                <h5 className='settings_client_input_label'>E-mail</h5>
-                <input
-                    type="text"
-                    value={editedEmail}
-                    onChange={(e) => setEditedEmail(e.target.value)}
-                    className='settings_client_email'
-                    placeholder="Digite seu email"
-                />
-                <h5 className='settings_client_input_label'>Telefone</h5>
-                <input
-                    type="text"
-                    value={editedPhone}
-                    onChange={(e) => setEditedPhone(e.target.value)}
-                    className='settings_client_email'
-                    placeholder="Digite seu telefone"
-                />
-                <div className='back_to_dashboard_button_setting' onClick={backToDashboard} >
-                    <ButtonPrimary label="Salvar" onClick={saveData} isFullWidth={true}/>
+            <h5 className='settings_subtitle'>Defina as informações que aparecerão nas assinaturas das imagens</h5>
+            <div className='settings_spacing_between_form_and_buttons'>
+                <div className='settings_list_items'>
+                    <InputField
+                        id="name"
+                        labelText="Nome"
+                        type="name"
+                        placeholder="Digite seu nome"
+                        value={editedName}
+                        onChange={(e) => setEditedName(e.target.value)}
+                    />
+                    <InputField
+                        id="email"
+                        labelText="E-mail"
+                        type="email"
+                        placeholder="Digite seu e-mail"
+                        value={editedEmail}
+                        onChange={(e) => setEditedEmail(e.target.value)}
+                    />
+                    <InputField
+                        id="phone"
+                        labelText="Telefone"
+                        type="phone"
+                        placeholder="Digite seu telefone"
+                        value={editedPhone}
+                        onChange={(e) => setEditedPhone(e.target.value)}
+                    />
+                </div>
+                <div className='settings_row_buttons'>
+                    <h4 className='row_item_settings_label' onClick={backToDashboard} >Voltar sem salvar</h4>
+                    <ButtonPrimary label="Salvar" onClick={saveData} isFullWidth={false}/>
                 </div>
             </div>
-            <h4 className='row_item_settings_label'>Voltar para o dashboard</h4>
         </div>
     );
 }

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center; /* Centraliza verticalmente */
     height: 100vh;
 }
 
@@ -10,39 +11,15 @@
     height: 100px;
     border-radius: 50%;
     background-color: #3498db;
-    margin-top: 16vh;
     margin-bottom: 24px;
-}
-
-.settings_client_input_label{
-    width: 280px;
-    align-items: first baseline;
-    font-size: 12px;
-    font-weight: 400;
-    margin: 0px;
-    padding-top: 8px;
-    padding-bottom: 0px;
-}
-
-.settings_client_email{
-    width: 280px;
-    font-size: 12px;
-    font-weight: 600;
-    margin: 0px;
-    padding-bottom: 40px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-radius: 8px;
 }
 
 .settings_list_items{
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 128px;
+    gap: 24px;
+    width: 300px;
 }
 
 .row_item_settings{
@@ -54,14 +31,32 @@
 .row_item_settings_label{
     font-size: 16px;
     font-weight: 500;
-    text-align: center;
 }
 
-.back_to_dashboard_button_setting{
-    width: 100%;
-    padding-top: 24px;
+.row_item_settings_label:hover{
+    cursor: pointer;
 }
 
 .back_to_dashboard_button_setting:hover{
     cursor: pointer;
+}
+
+.settings_row_buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.settings_spacing_between_form_and_buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15vh;
+}
+
+.settings_subtitle{
+    width: 300px;
+    font-weight: 500;
+    text-align: center;
 }

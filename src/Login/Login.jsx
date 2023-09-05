@@ -52,15 +52,17 @@ function Login() {
 
   return (
     <div className="container-login">
-      <InputField
-        id="email"
-        labelText="E-mail"
-        type="email"
-        placeholder="Digite o seu e-mail"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <div className="final-input-account">
+      <h1 className='login_title'>Boas vindas!</h1>
+      <h5 className='login_subtitle'>Faça login para entrar no sistema</h5>
+      <div className="login_form_gap_spacing">
+        <InputField
+          id="email"
+          labelText="E-mail"
+          type="email"
+          placeholder="Digite o seu e-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <InputField
           id="password"
           labelText="Senha"

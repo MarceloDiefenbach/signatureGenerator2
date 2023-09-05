@@ -23,37 +23,46 @@ function Folder() {
     const [selectedFile, setSelectedFile] = useState([]);
 
     useEffect(() => {
-        
-        const tokenData = {
+        const fetchData = async () => {
+          const apiUrl = `${API_BASE_URL}/v2/files`; // Atualize com a URL completa da sua API
+          const requestData = {
+            folderID: folderid,
             email: localStorage.getItem('email'),
-            token: localStorage.getItem('token')
-        };
-
-        axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
-            .then(tokenResponse => {
-            if (tokenResponse.status === 200) {
-                axios.post(`${API_BASE_URL}/v2/files`, {
-                folderID: folderid
-                })
-                .then(response => {
-                    setFiles(response.data.files);
-                    setFolderName(response.data.folderName);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    console.error('Erro ao obter arquivos:', error);
-                    setIsLoading(false);
-                });
+            token: localStorage.getItem('token'),
+          };
+    
+          try {
+            const response = await axios.post(apiUrl, requestData);
+    
+            if (response.status === 200) {
+              console.error('sucesso');
+              const data = response.data;
+              setFiles(data.files);
+              setFolderName(data.folderName);
+              setIsLoading(false);
+            } else if (response.status === 401) {
+              console.error('1');
+              setIsLoading(false);
+            } else if (response.status === 400) {
+              console.error('2');
+              setIsLoading(false);
+            } else if (response.status === 500) {
+              console.error('3');
+              setIsLoading(false);
             } else {
-                console.log("vai pra login");
-                navigate('/');
+              setIsLoading(false);
+              console.error('4');
+              console.error('Error fetching data:', response.statusText);
             }
-            })
-            .catch(tokenError => {
-                console.error('Erro ao verificar token:', tokenError);
-                navigate('/');
-            });
-    }, [folderid]);
+          } catch (error) {
+            setIsLoading(false);
+            console.error('5');
+            console.error('Error fetching data:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
     const openFile = (index) => {
         console.log(`Item ${index + 1} clicado.`);

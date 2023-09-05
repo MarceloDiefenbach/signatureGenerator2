@@ -17,37 +17,39 @@ function Login() {
   const [folders, setFolders] = useState([]);
   
   useEffect(() => {
+    const fetchData = async () => {
+        
+      const apiUrl = `${API_BASE_URL}/v1/folders`;
+      const requestData = {
+        ownerID: '1',
+        email: localStorage.getItem('email'),
+        token: localStorage.getItem('token'),
+      };
 
-    const tokenData = {
-      email: localStorage.getItem('email'), // Substitua pelo email do usuário
-      token: localStorage.getItem('token') // Substitua pelo token do usuário
-    };
-
-    axios.post(`${API_BASE_URL}/v1/check_token`, tokenData)
-      .then(tokenResponse => {
-        if (tokenResponse.status === 200) {
-          axios.post(`${API_BASE_URL}/v1/folders`, { ownerID: '1' }, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-          })
-          .then(response => {
-              setFolders(response.data.folders);
-              setIsLoading(false);
-          })
-          .catch(error => {
-              console.error('Erro ao obter pastas:', error);
-              setIsLoading(false);
-          });
+      try {
+        const response = await axios.post(apiUrl, requestData);
+        if (response.status === 200) {
+          console.error('sucesso');
+          const data = response.data;
+          setFolders(data.folders)
+          setIsLoading(false);
+        } else if (response.status === 401) {
+          setIsLoading(false);
+        } else if (response.status === 400) {
+          setIsLoading(false);
+        } else if (response.status === 500) {
+          setIsLoading(false);
         } else {
-          console.log("vai pra login");
-          navigate('/');
+          setIsLoading(false);
+          console.error('Error fetching data:', response.statusText);
         }
-      })
-      .catch(tokenError => {
-        console.error('Erro ao verificar token:', tokenError);
-        navigate('/');
-      });
+      } catch (error) {
+        setIsLoading(false);
+        console.error('5');
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
   }, []);
 
   const handleItemClick = (index) => {
