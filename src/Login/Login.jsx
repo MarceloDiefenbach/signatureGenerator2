@@ -30,8 +30,10 @@ function Login() {
         localStorage.setItem('token', response.token);
         localStorage.setItem('email', email);
         navigate('/dashboard');
+      } else if (response.statusCode === "401") {
+        console.log('Erro ao fazer login: Invalid email or password');
       } else {
-        console.log('Erro ao fazer login: Resposta vazia do servidor.');
+        console.log('Erro ao fazer login: Empty response');
       }
     } catch (error) {
       console.error('Erro ao fazer login:', error.message || 'Erro desconhecido');

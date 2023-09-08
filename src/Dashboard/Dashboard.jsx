@@ -29,7 +29,6 @@ function Login() {
       try {
         const response = await axios.post(apiUrl, requestData);
         if (response.status === 200) {
-          console.error('sucesso');
           const data = response.data;
           setFolders(data.folders)
           setIsLoading(false);
@@ -45,7 +44,6 @@ function Login() {
         }
       } catch (error) {
         setIsLoading(false);
-        console.error('5');
         console.error('Error fetching data:', error);
       }
     }
